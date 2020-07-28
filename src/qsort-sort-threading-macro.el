@@ -14,7 +14,7 @@
   (mapcar #'string-to-number)
   (funcall (lambda (elm) (sort elm #'<)))
   (funcall (lambda (elm) (mapconcat #'number-to-string elm " ")))
-  (format "%s\n")
+  (format "%s \n")
   (princ))
 
 ;;; qsort-sort-threading-macro.el ends here

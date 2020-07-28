@@ -9,7 +9,7 @@
 
 (princ
  (format
-  "%s\n"
+  "%s \n"
   (mapconcat
    #'number-to-string
    (sort (mapcar #'string-to-number (split-string (read-string "") " " 'omit-null)) #'<)

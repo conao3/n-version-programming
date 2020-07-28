@@ -44,6 +44,6 @@
 
 (let ((lst (qsort-get-data-from-stdin)))
   (princ
-   (format "%s\n" (mapconcat #'number-to-string (qsort lst) " "))))
+   (format "%s \n" (mapconcat #'number-to-string (qsort lst) " "))))
 
 ;;; qsort.el ends here
