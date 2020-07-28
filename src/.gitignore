@@ -1,0 +1,8 @@
+## .gitignore
+
+# Elisp compiled file
+*.elc
+
+# CLISP compilied file
+*.fas
+*.lib

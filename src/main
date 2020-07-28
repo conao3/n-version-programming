@@ -10,10 +10,20 @@ set -x
 
 rm -rf .result
 
+## interpreters
 cat .random | emacs --script qsort.el >> .result
 cat .random | emacs --script qsort-sort.el >> .result
 cat .random | emacs --script qsort-sort-threading-macro.el >> .result
 cat .random | clisp qsort.lisp >> .result
+
+## compilers
+emacs --batch -f batch-byte-compile qsort.el && \
+    cat .random | emacs --script qsort.elc >> .result
+emacs --batch -f batch-byte-compile qsort-sort.el && \
+    cat .random | emacs --script qsort-sort.elc >> .result
+emacs --batch -f batch-byte-compile qsort-sort-threading-macro.el && \
+    cat .random | emacs --script qsort-sort-threading-macro.elc >> .result
+clisp -c qsort.lisp && cat .random | clisp qsort
 
 set +x
 echo
