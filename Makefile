@@ -12,8 +12,8 @@ src/.random:
 
 up: .docker
 
-exec: .docker
-	docker-compose exec main bash
+exec: .docker src/.random
+	docker-compose exec main './src/main'
 
 down:
 	if [ -f .docker ]; then docker-compose down; fi
