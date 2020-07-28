@@ -13,10 +13,18 @@ void swap(int* left, int* right) {
   return;
 }
 
+int med3(int x, int y, int z) {
+  if (x < y) {
+    if (y < z) return y; else if (z < x) return x; else return z;
+  } else {
+    if (z < y) return y; else if (x < z) return x; else return z;
+  }
+}
+
 void quicksort(int a[], int left, int right) {
   if (left < right) {
     int i = left, j = right;
-    int pivot = a[i];
+    int pivot = med3(a[i], a[i + (j - i) / 2], a[j]);
     while (1) {
       while (a[i] < pivot) i++;
       while (pivot < a[j]) j--;
