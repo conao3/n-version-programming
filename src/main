@@ -1,5 +1,6 @@
 #!/bin/sh
 
+cd "$(dirname "$0")"
 if [ ! -f .random ]; then
   echo ".random file missing!  Please create .random file."
   exit 1
