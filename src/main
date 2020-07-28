@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if [ ! -f .random ]; then
+  echo ".random file missing!  Please create .random file."
+  exit 1
+fi
+
+set -x
+
+rm -rf .result
+cat .random | ./qsort.el >> .result
+cat .random | ./qsort-sort.el >> .result
+cat .random | ./qsort-sort-threading-macro.el >> .result
+
+set +x
+echo
+echo '=== Process complete ==='
+
+cat .result | sort | uniq -c
