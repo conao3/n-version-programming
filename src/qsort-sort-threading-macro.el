@@ -1,4 +1,3 @@
-#!/usr/bin/emacs --script
 ;;; qsort-sort-threading-macro.el --- Quicksort  -*- lexical-binding: t; -*-
 
 ;;; Commentary:

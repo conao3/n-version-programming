@@ -1,4 +1,3 @@
-#!/usr/bin/emacs --script
 ;;; qsort.el --- Quicksort  -*- lexical-binding: t; -*-
 
 ;;; Commentary:

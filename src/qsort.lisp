@@ -1,4 +1,3 @@
-#!/usr/bin/env clisp
 ;;; qsort-clisp.lisp
 
 (defun split-str-1 (string &optional (separator " ") (r nil))

@@ -9,10 +9,11 @@ fi
 set -x
 
 rm -rf .result
-cat .random | ./qsort.el >> .result
-cat .random | ./qsort-sort.el >> .result
-cat .random | ./qsort-sort-threading-macro.el >> .result
-cat .random | ./qsort.lisp >> .result
+
+cat .random | emacs --script qsort.el >> .result
+cat .random | emacs --script qsort-sort.el >> .result
+cat .random | emacs --script qsort-sort-threading-macro.el >> .result
+cat .random | clisp qsort.lisp >> .result
 
 set +x
 echo
