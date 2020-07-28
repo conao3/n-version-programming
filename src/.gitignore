@@ -1,5 +1,8 @@
 ## .gitignore
 
+# General compiled file
+*.out
+
 # Elisp compiled file
 *.elc
 
