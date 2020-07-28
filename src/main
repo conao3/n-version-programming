@@ -12,6 +12,7 @@ rm -rf .result
 cat .random | ./qsort.el >> .result
 cat .random | ./qsort-sort.el >> .result
 cat .random | ./qsort-sort-threading-macro.el >> .result
+cat .random | ./qsort.lisp >> .result
 
 set +x
 echo

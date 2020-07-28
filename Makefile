@@ -4,7 +4,7 @@ all: main
 .PHONY: up exec down main rebuid login
 
 src/.random:
-	od -vAn -to1 </dev/urandom | head -1 > $@
+	od -vAn -to1 </dev/urandom | head -1 | sed 's/^ *//' > $@
 
 .docker: src/.random
 	docker-compose up -d
