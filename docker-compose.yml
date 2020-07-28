@@ -1,0 +1,9 @@
+## docker-compose.yml
+
+version: '3'
+services:
+  main:
+    build: .
+    tty: true
+    volumes:
+      - ./src:/src
