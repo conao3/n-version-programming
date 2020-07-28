@@ -30,9 +30,11 @@ clisp -c qsort.lisp && cat .random | clisp qsort >> .result
 gcc qsort.c -o qsort.out && cat .random | ./qsort.out >> .result
 gcc qsort-one-function.c -o qsort.out && cat .random | ./qsort.out >> .result
 gcc qsort-one-function-med3.c -o qsort.out && cat .random | ./qsort.out >> .result
+gcc qsort-one-function-pointer.c -o qsort.out && cat .random | ./qsort.out >> .result
 clang qsort.c -o qsort.out && cat .random | ./qsort.out >> .result
 clang qsort-one-function.c -o qsort.out && cat .random | ./qsort.out >> .result
 clang qsort-one-function-med3.c -o qsort.out && cat .random | ./qsort.out >> .result
+clang qsort-one-function-pointer.c -o qsort.out && cat .random | ./qsort.out >> .result
 
 set +x
 echo
