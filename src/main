@@ -14,6 +14,7 @@ rm -rf .result
 cat .random | emacs --script qsort.el >> .result
 cat .random | emacs --script qsort-sort.el >> .result
 cat .random | emacs --script qsort-sort-threading-macro.el >> .result
+cat .random | emacs --script qsort-one-function.el >> .result
 cat .random | clisp qsort.lisp >> .result
 
 ## compilers
@@ -26,6 +27,8 @@ emacs --batch -f batch-byte-compile qsort-sort-threading-macro.el && \
 clisp -c qsort.lisp && cat .random | clisp qsort >> .result
 gcc qsort.c -o qsort.out && cat .random | ./qsort.out >> .result
 gcc qsort-one-function.c -o qsort.out && cat .random | ./qsort.out >> .result
+clang qsort.c -o qsort.out && cat .random | ./qsort.out >> .result
+clang qsort-one-function.c -o qsort.out && cat .random | ./qsort.out >> .result
 
 set +x
 echo
