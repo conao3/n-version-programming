@@ -24,6 +24,8 @@ emacs --batch -f batch-byte-compile qsort-sort.el && \
     cat .random | emacs --script qsort-sort.elc >> .result
 emacs --batch -f batch-byte-compile qsort-sort-threading-macro.el && \
     cat .random | emacs --script qsort-sort-threading-macro.elc >> .result
+emacs --batch -f batch-byte-compile qsort-one-function.el && \
+    cat .random | emacs --script qsort-one-function.elc >> .result
 clisp -c qsort.lisp && cat .random | clisp qsort >> .result
 gcc qsort.c -o qsort.out && cat .random | ./qsort.out >> .result
 gcc qsort-one-function.c -o qsort.out && cat .random | ./qsort.out >> .result
