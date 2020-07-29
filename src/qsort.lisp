@@ -46,4 +46,5 @@
 
 (let ((lst (get-data)))
   (dolist (elm (qsort lst))
-    (format t "~D " elm)))
+    (format t "~D " elm))
+  (fresh-line))

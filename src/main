@@ -16,6 +16,7 @@ cat .random | emacs --script qsort-sort.el >> .result
 cat .random | emacs --script qsort-sort-threading-macro.el >> .result
 cat .random | emacs --script qsort-one-function.el >> .result
 cat .random | clisp qsort.lisp >> .result
+cat .random | sbcl --script qsort.lisp >> .result
 
 ## compilers
 emacs --batch -f batch-byte-compile qsort.el && cat .random | emacs --script qsort.elc >> .result
