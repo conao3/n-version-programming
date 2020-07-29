@@ -40,7 +40,9 @@ clang qsort-one-function-med3-tri.c -o qsort.out && cat .random | ./qsort.out >>
 clang qsort-one-function-pointer.c -o qsort.out && cat .random | ./qsort.out >> .result
 clang qsort-one-function-pointer-med3.c -o qsort.out && cat .random | ./qsort.out >> .result
 g++ qsort.cpp -o qsort.out && cat .random | ./qsort.out >> .result
+g++ qsort-vector.cpp -o qsort.out && cat .random | ./qsort.out >> .result
 clang++ qsort.cpp -o qsort.out && cat .random | ./qsort.out >> .result
+clang++ qsort-vector.cpp -o qsort.out && cat .random | ./qsort.out >> .result
 
 set +x
 echo
