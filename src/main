@@ -48,5 +48,11 @@ clang++ qsort-vector-sort.cpp && cat .random | ./a.out >> .result
 set +x
 echo
 echo '=== Process complete ==='
-
+echo '=== Results ==='
 cat .result | sort | uniq -c
+
+echo ''
+echo '=== Majority vote ==='
+cat .result | sort | uniq -c | awk '{if(m<$1) m=$1; $1=""; t=$0} END{print t}'
+
+echo ''
