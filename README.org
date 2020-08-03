@@ -22,8 +22,172 @@
 A practical example for N-version programming.
 
 * Install
+This project depends on [[https://docs.docker.com/][docker]] and [[https://docs.docker.com/compose/][docker-compose]].
 
 * Usage
+Just type =make=.
+
+Sample log.
+
+#+begin_src shell
+  $ make
+  make up
+  make[1]: Entering directory '/home/conao/dev/repos/n-version-programming'
+  docker-compose up -d
+  Creating network "n-version-programming_default" with the default driver
+  Creating n-version-programming_main_1 ... done
+  touch .docker
+  make[1]: Leaving directory '/home/conao/dev/repos/n-version-programming'
+  make exec
+  make[1]: Entering directory '/home/conao/dev/repos/n-version-programming'
+  docker-compose exec main './src/main'
+  + rm -rf .result
+  + emacs --script qsort.el
+  + cat .random
+  Loading /etc/emacs/site-start.d/00debian.el (source)...
+  + cat .random
+  + emacs --script qsort-sort.el
+  Loading /etc/emacs/site-start.d/00debian.el (source)...
+  + cat .random
+  + emacs --script qsort-sort-threading-macro.el
+  Loading /etc/emacs/site-start.d/00debian.el (source)...
+  + cat .random
+  + emacs --script qsort-one-function.el
+  Loading /etc/emacs/site-start.d/00debian.el (source)...
+  + cat .random
+  + clisp qsort.lisp
+  + cat .random
+  + sbcl --script qsort.lisp
+  + emacs --batch -f batch-byte-compile qsort.el
+  Loading /etc/emacs/site-start.d/00debian.el (source)...
+  + cat .random
+  + emacs --script qsort.elc
+  Loading /etc/emacs/site-start.d/00debian.el (source)...
+  + emacs --batch -f batch-byte-compile qsort-sort.el
+  Loading /etc/emacs/site-start.d/00debian.el (source)...
+  + cat .random
+  + emacs --script qsort-sort.elc
+  Loading /etc/emacs/site-start.d/00debian.el (source)...
+  + emacs --batch -f batch-byte-compile qsort-sort-threading-macro.el
+  Loading /etc/emacs/site-start.d/00debian.el (source)...
+  + cat .random
+  + emacs --script qsort-sort-threading-macro.elc
+  Loading /etc/emacs/site-start.d/00debian.el (source)...
+  + emacs --batch -f batch-byte-compile qsort-one-function.el
+  Loading /etc/emacs/site-start.d/00debian.el (source)...
+  + cat .random
+  + emacs --script qsort-one-function.elc
+  Loading /etc/emacs/site-start.d/00debian.el (source)...
+  + clisp -c qsort.lisp
+    i i i i i i i       ooooo    o        ooooooo   ooooo   ooooo
+    I I I I I I I      8     8   8           8     8     o  8    8
+    I  \ `+' /  I      8         8           8     8        8    8
+     \  `-+-'  /       8         8           8      ooooo   8oooo
+      `-__|__-'        8         8           8           8  8
+          |            8     o   8           8     o     8  8
+    ------+------       ooooo    8oooooo  ooo8ooo   ooooo   8
+
+  Welcome to GNU CLISP 2.49.92 (2018-02-18) <http://clisp.org/>
+
+  Copyright (c) Bruno Haible, Michael Stoll 1992-1993
+  Copyright (c) Bruno Haible, Marcus Daniels 1994-1997
+  Copyright (c) Bruno Haible, Pierpaolo Bernardi, Sam Steingold 1998
+  Copyright (c) Bruno Haible, Sam Steingold 1999-2000
+  Copyright (c) Sam Steingold, Bruno Haible 2001-2018
+
+  Type :h and hit Enter for context help.
+
+  ;; Compiling file /src/qsort.lisp ...
+  ;; Wrote file /src/qsort.fas
+  0 errors, 0 warnings
+  Bye.
+  + cat .random
+  + clisp qsort
+  + gcc qsort.c
+  + cat .random
+  + ./a.out
+  + gcc qsort-one-function.c
+  + cat .random
+  + ./a.out
+  + gcc qsort-one-function-med3.c
+  + cat .random
+  + ./a.out
+  + gcc qsort-one-function-med3-tri.c
+  + cat .random
+  + ./a.out
+  + gcc qsort-one-function-pointer.c
+  + cat .random
+  + ./a.out
+  + gcc qsort-one-function-pointer-med3.c
+  + cat .random
+  + ./a.out
+  + clang qsort.c
+  + cat .random
+  + ./a.out
+  + clang qsort-one-function.c
+  + cat .random
+  + ./a.out
+  + clang qsort-one-function-med3.c
+  + + cat .random
+  ./a.out
+  + clang qsort-one-function-med3-tri.c
+  + cat .random
+  + ./a.out
+  + clang qsort-one-function-pointer.c
+  + cat .random
+  + ./a.out
+  + clang qsort-one-function-pointer-med3.c
+  + cat .random
+  + ./a.out
+  + g++ qsort.cpp
+  + cat .random
+  + ./a.out
+  + g++ qsort-vector.cpp
+  + cat .random
+  + ./a.out
+  + g++ qsort-vector-bug.cpp
+  + cat .random
+  + ./a.out
+  + g++ qsort-vector-sort.cpp
+  + cat .random
+  + ./a.out
+  + clang++ qsort.cpp
+  + cat .random
+  + ./a.out
+  + clang++ qsort-vector.cpp
+  + cat .random
+  + ./a.out
+  + clang++ qsort-vector-bug.cpp
+  + cat .random
+  + ./a.out
+  + clang++ qsort-vector-sort.cpp
+  + cat .random
+  + ./a.out
+  + set +x
+
+  === Process complete ===
+  === Results ===
+        2 0 6 10 10 25 42 47 54 56 77 110 121 146 147 220 247 
+       29 6 10 10 25 42 47 54 56 77 110 121 146 147 220 247 376 
+
+  === Majority vote ===
+   6 10 10 25 42 47 54 56 77 110 121 146 147 220 247 376
+
+  make[1]: Leaving directory '/home/conao/dev/repos/n-version-programming'
+  make down
+  make[1]: Entering directory '/home/conao/dev/repos/n-version-programming'
+  if [ -f .docker ]; then docker-compose down; fi
+  Stopping n-version-programming_main_1 ... done
+  Removing n-version-programming_main_1 ... done
+  Removing network n-version-programming_default
+  rm -rf .docker
+  make[1]: Leaving directory '/home/conao/dev/repos/n-version-programming'
+#+end_src
+
+From this result, 29 programs output =6 10 10 25 42 47 54 56 77 110 121 146 147 220 247 376=
+and 2 programs output =2 0 6 10 10 25 42 47 54 56 77 110 121 146 147 220 247=.
+
+By Majority vote, adopt =6 10 10 25 42 47 54 56 77 110 121 146 147 220 247 376=.
 
 * Information
 ** Community
