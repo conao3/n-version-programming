@@ -1,210 +1,76 @@
+#+title: N-Version Programming
 #+author: conao3
-#+date: <2020-03-20 Fri>
 
-[[https://github.com/conao3/n-version-programming][https://raw.githubusercontent.com/conao3/files/master/blob/headers/png/n-version-programming.png]]
 [[https://github.com/conao3/n-version-programming/blob/master/LICENSE][https://img.shields.io/github/license/conao3/n-version-programming.svg?style=flat-square]]
 [[https://github.com/conao3/n-version-programming/releases][https://img.shields.io/github/tag/conao3/n-version-programming.svg?style=flat-square]]
-[[https://github.com/conao3/n-version-programming/actions][https://img.shields.io/badge/patreon-become%20a%20patron-orange.svg?logo=patreon&style=flat-square]]
-[[https://twitter.com/conao_3][https://img.shields.io/badge/twitter-@conao__3-blue.svg?logo=twitter&style=flat-square]]
-[[https://conao3-support.slack.com/join/shared_invite/enQtNjUzMDMxODcyMjE1LWUwMjhiNTU3Yjk3ODIwNzAxMTgwOTkxNmJiN2M4OTZkMWY0NjI4ZTg4MTVlNzcwNDY2ZjVjYmRiZmJjZDU4MDE][https://img.shields.io/badge/chat-on_slack-blue.svg?logo=slack&style=flat-square]]
 
-* Table of Contents
-- [[#description][Description]]
-- [[#install][Install]]
-- [[#usage][Usage]]
-- [[#information][Information]]
-  - [[#community][Community]]
-  - [[#contribution][Contribution]]
-  - [[#license][License]]
-  - [[#author][Author]]
+* Overview
 
-* Description
-A practical example for N-version programming.
+A practical demonstration of N-version programming, a software fault tolerance technique where multiple independent implementations of the same specification run in parallel. Results are compared using majority voting to detect and mask errors.
 
-* Install
-This project depends on [[https://docs.docker.com/][docker]] and [[https://docs.docker.com/compose/][docker-compose]].
+This project implements quicksort across multiple languages and compilers to illustrate how diverse implementations can provide reliable outputs even when individual versions contain bugs.
+
+* Features
+
+- Multiple quicksort implementations across different languages:
+  - C (gcc, clang)
+  - C++ (g++, clang++)
+  - Emacs Lisp (interpreted and byte-compiled)
+  - Common Lisp (CLISP, SBCL)
+- Automatic execution of all implementations
+- Majority voting system for result determination
+- Docker-based environment for consistent execution
+
+* Requirements
+
+- [[https://docs.docker.com/][Docker]]
+- [[https://docs.docker.com/compose/][Docker Compose]]
 
 * Usage
-Just type =make=.
 
-Sample log.
+Run all implementations and perform majority voting:
 
 #+begin_src shell
-  $ make
-  make up
-  make[1]: Entering directory '/home/conao/dev/repos/n-version-programming'
-  docker-compose up -d
-  Creating network "n-version-programming_default" with the default driver
-  Creating n-version-programming_main_1 ... done
-  touch .docker
-  make[1]: Leaving directory '/home/conao/dev/repos/n-version-programming'
-  make exec
-  make[1]: Entering directory '/home/conao/dev/repos/n-version-programming'
-  docker-compose exec main './src/main'
-  + rm -rf .result
-  + emacs --script qsort.el
-  + cat .random
-  Loading /etc/emacs/site-start.d/00debian.el (source)...
-  + cat .random
-  + emacs --script qsort-sort.el
-  Loading /etc/emacs/site-start.d/00debian.el (source)...
-  + cat .random
-  + emacs --script qsort-sort-threading-macro.el
-  Loading /etc/emacs/site-start.d/00debian.el (source)...
-  + cat .random
-  + emacs --script qsort-one-function.el
-  Loading /etc/emacs/site-start.d/00debian.el (source)...
-  + cat .random
-  + clisp qsort.lisp
-  + cat .random
-  + sbcl --script qsort.lisp
-  + emacs --batch -f batch-byte-compile qsort.el
-  Loading /etc/emacs/site-start.d/00debian.el (source)...
-  + cat .random
-  + emacs --script qsort.elc
-  Loading /etc/emacs/site-start.d/00debian.el (source)...
-  + emacs --batch -f batch-byte-compile qsort-sort.el
-  Loading /etc/emacs/site-start.d/00debian.el (source)...
-  + cat .random
-  + emacs --script qsort-sort.elc
-  Loading /etc/emacs/site-start.d/00debian.el (source)...
-  + emacs --batch -f batch-byte-compile qsort-sort-threading-macro.el
-  Loading /etc/emacs/site-start.d/00debian.el (source)...
-  + cat .random
-  + emacs --script qsort-sort-threading-macro.elc
-  Loading /etc/emacs/site-start.d/00debian.el (source)...
-  + emacs --batch -f batch-byte-compile qsort-one-function.el
-  Loading /etc/emacs/site-start.d/00debian.el (source)...
-  + cat .random
-  + emacs --script qsort-one-function.elc
-  Loading /etc/emacs/site-start.d/00debian.el (source)...
-  + clisp -c qsort.lisp
-    i i i i i i i       ooooo    o        ooooooo   ooooo   ooooo
-    I I I I I I I      8     8   8           8     8     o  8    8
-    I  \ `+' /  I      8         8           8     8        8    8
-     \  `-+-'  /       8         8           8      ooooo   8oooo
-      `-__|__-'        8         8           8           8  8
-          |            8     o   8           8     o     8  8
-    ------+------       ooooo    8oooooo  ooo8ooo   ooooo   8
-
-  Welcome to GNU CLISP 2.49.92 (2018-02-18) <http://clisp.org/>
-
-  Copyright (c) Bruno Haible, Michael Stoll 1992-1993
-  Copyright (c) Bruno Haible, Marcus Daniels 1994-1997
-  Copyright (c) Bruno Haible, Pierpaolo Bernardi, Sam Steingold 1998
-  Copyright (c) Bruno Haible, Sam Steingold 1999-2000
-  Copyright (c) Sam Steingold, Bruno Haible 2001-2018
-
-  Type :h and hit Enter for context help.
-
-  ;; Compiling file /src/qsort.lisp ...
-  ;; Wrote file /src/qsort.fas
-  0 errors, 0 warnings
-  Bye.
-  + cat .random
-  + clisp qsort
-  + gcc qsort.c
-  + cat .random
-  + ./a.out
-  + gcc qsort-one-function.c
-  + cat .random
-  + ./a.out
-  + gcc qsort-one-function-med3.c
-  + cat .random
-  + ./a.out
-  + gcc qsort-one-function-med3-tri.c
-  + cat .random
-  + ./a.out
-  + gcc qsort-one-function-pointer.c
-  + cat .random
-  + ./a.out
-  + gcc qsort-one-function-pointer-med3.c
-  + cat .random
-  + ./a.out
-  + clang qsort.c
-  + cat .random
-  + ./a.out
-  + clang qsort-one-function.c
-  + cat .random
-  + ./a.out
-  + clang qsort-one-function-med3.c
-  + + cat .random
-  ./a.out
-  + clang qsort-one-function-med3-tri.c
-  + cat .random
-  + ./a.out
-  + clang qsort-one-function-pointer.c
-  + cat .random
-  + ./a.out
-  + clang qsort-one-function-pointer-med3.c
-  + cat .random
-  + ./a.out
-  + g++ qsort.cpp
-  + cat .random
-  + ./a.out
-  + g++ qsort-vector.cpp
-  + cat .random
-  + ./a.out
-  + g++ qsort-vector-bug.cpp
-  + cat .random
-  + ./a.out
-  + g++ qsort-vector-sort.cpp
-  + cat .random
-  + ./a.out
-  + clang++ qsort.cpp
-  + cat .random
-  + ./a.out
-  + clang++ qsort-vector.cpp
-  + cat .random
-  + ./a.out
-  + clang++ qsort-vector-bug.cpp
-  + cat .random
-  + ./a.out
-  + clang++ qsort-vector-sort.cpp
-  + cat .random
-  + ./a.out
-  + set +x
-
-  === Process complete ===
-  === Results ===
-        2 0 6 10 10 25 42 47 54 56 77 110 121 146 147 220 247 
-       29 6 10 10 25 42 47 54 56 77 110 121 146 147 220 247 376 
-
-  === Majority vote ===
-   6 10 10 25 42 47 54 56 77 110 121 146 147 220 247 376
-
-  make[1]: Leaving directory '/home/conao/dev/repos/n-version-programming'
-  make down
-  make[1]: Entering directory '/home/conao/dev/repos/n-version-programming'
-  if [ -f .docker ]; then docker-compose down; fi
-  Stopping n-version-programming_main_1 ... done
-  Removing n-version-programming_main_1 ... done
-  Removing network n-version-programming_default
-  rm -rf .docker
-  make[1]: Leaving directory '/home/conao/dev/repos/n-version-programming'
+make
 #+end_src
 
-From this result, 29 programs output =6 10 10 25 42 47 54 56 77 110 121 146 147 220 247 376=
-and 2 programs output =2 0 6 10 10 25 42 47 54 56 77 110 121 146 147 220 247=.
+This command will:
+1. Start the Docker container
+2. Execute all quicksort implementations with the same input
+3. Compare results and apply majority voting
+4. Display the consensus result
 
-By Majority vote, adopt =6 10 10 25 42 47 54 56 77 110 121 146 147 220 247 376=.
+** Example Output
 
-* Information
-** Community
-All feedback and suggestions are welcome!
+#+begin_src text
+=== Results ===
+      2 0 6 10 10 25 42 47 54 56 77 110 121 146 147 220 247
+     29 6 10 10 25 42 47 54 56 77 110 121 146 147 220 247 376
 
-You can use github issues, but you can also use [[https://conao3-support.slack.com/join/shared_invite/enQtNjUzMDMxODcyMjE1LWUwMjhiNTU3Yjk3ODIwNzAxMTgwOTkxNmJiN2M4OTZkMWY0NjI4ZTg4MTVlNzcwNDY2ZjVjYmRiZmJjZDU4MDE][Slack]]
-if you want a more casual conversation.
+=== Majority vote ===
+ 6 10 10 25 42 47 54 56 77 110 121 146 147 220 247 376
+#+end_src
 
-** Contribution
-We welcome PR!
+In this example, 29 implementations produced the correct sorted output, while 2 implementations (intentionally buggy) produced incorrect results. The majority voting system correctly identifies and outputs the correct result.
 
-** License
-#+begin_example
-  MIT License
-  Copyright (c) Naoya Yamashita - https://conao3.com
-  https://github.com/conao3/n-version-programming/blob/master/LICENSE
-#+end_example
+* How It Works
 
-** Author
-- Naoya Yamashita ([[https://github.com/conao3][conao3]])
+N-version programming operates on the principle that independently developed implementations are unlikely to fail in the same way. By running multiple versions and comparing their outputs, the system can:
+
+1. Detect errors when outputs disagree
+2. Determine the correct output through majority voting
+3. Continue operating correctly even when some implementations fail
+
+This project includes intentionally buggy implementations (e.g., =qsort-vector-bug.cpp=) to demonstrate the fault tolerance mechanism.
+
+* License
+
+MIT License
+
+Copyright (c) Naoya Yamashita
+
+See [[https://github.com/conao3/n-version-programming/blob/master/LICENSE][LICENSE]] for details.
+
+* Author
+
+Naoya Yamashita ([[https://github.com/conao3][conao3]])
